@@ -1,0 +1,126 @@
+<section class="profile-section">
+
+  <!-- alert message in case the new data was saved -->
+  <div class="alert alert-success text-center" role="alert" *ngIf="success">
+    The changes have been save!
+  </div>
+
+  <!-- if an error occurs, an alert message appears -->
+  <div class="alert alert-secondary" role="alert" *ngIf="error">
+    Something went worng! try later
+  </div>
+
+  <!-- show user's information for edit or just read -->
+  <div class="container">
+    <h1>User's Profile</h1>
+
+    <div class="row">
+      
+      <div class="col col-sm-12 col-md-6">
+        <img src="../../assets/img/SittingDoodle.svg" class="img-fluid" alt="sitting doodle">
+      </div>
+
+      <div class="col col-sm 12 col-md-6">
+
+        <h6>User's information</h6>
+
+        <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+          <div class="row my-3">
+            
+            <div class="col-md-6">
+              <label for="username">Username</label>
+              <div class="input-group">
+                <input type="text" class="form-control" value="{{user.username}}" 
+                  aria-placeholder="username" formControlName="username">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="password">Password</label>
+              <div class="input-group">
+                <input type="password" class="form-control" placeholder="********" 
+                  aria-placeholder="password" formControlName="password">
+              </div>
+            </div>
+
+          </div>
+
+          <label for="profile"> Profile</label>
+          <div class="input-group">
+            <select name="profile" id="profile" class="form-select"
+              aria-placeholder="user profile" formControlName="profile">
+              <option value="1">Main admin</option>
+              <option value="">Basic user</option>
+            </select>
+          </div>
+
+          <div class="row my-3">
+
+            <div class="col-md-6">
+              <label for="name">First name</label>
+              <div class="input-group">
+                <input type="text" class="form-control" value="{{user.name}}" 
+                  aria-placeholder="name" formControlName="name">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="surname">Last name</label>
+              <div class="input-group">
+                <input type="text" class="form-control" value="{{user.surname}}" 
+                  aria-placeholder="surname" formControlName="surname">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="mail">E-mail</label>
+              <div class="input-group">
+                <input type="email" class="form-control" value="{{user.mail}}" 
+                  aria-placeholder="emial" formControlName="mail">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="age">Age</label>
+              <div class="input-group mb-3">
+                <input type="number" class="form-control" value="{{user.age}}" 
+                  aria-placeholder="age" formControlName="mail">
+                <span class="input-group-text">years old</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+
+            <!-- buttons for edit or save changes. the firs disappear when is clilcked and 
+            enable the second one. -->
+            <div class="col col-md-4">
+              <button type="button" class="btn btn-primary" *ngIf="!isEditing" (click)="imprimir()">Edit information</button>
+              <button class="btn btn-primary" *ngIf="isEditing" (click)="onSubmit()">Save changes</button>
+            </div>
+
+            <!-- this button appear when is editing, this cancel the edition and 
+            then disappear. -->
+            <div class="col col-md-4">
+              <button class="btn btn-secondary" *ngIf="isEditing" (click)="imprimir()">Cancel editing</button>
+            </div>
+
+            <!-- button for delete the current account -->
+            <div class="col col-md-4">
+              <button class="btn btn-danger" (click)="deleteUser()">Delete account</button>
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- <p>user-profile works! with id: #{{ idUser }}</p>
+<button type="submit" (click)="logout()" class="btn btn-default">Logout</button> -->

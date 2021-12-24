@@ -1,0 +1,44 @@
+<section class="login-section">
+
+  <!-- danger notification appears if user/password are incorrect -->
+  <div class="alert alert-danger text-center" role="alert" *ngIf="error">
+      Somethin went worng. It seems username or password are incorrect.
+  </div>
+
+  <!-- login form container -->
+  <div class="container">
+    <h1>Log In</h1>
+    <div class="row">
+      <div class="col col-sm-12 col-md-6">
+        <img src="../../assets/img/RollingDoodle.svg" class="img-fluid" alt="walking girl">
+      </div>
+
+      <div class="col col-sm-12 col-md-6">
+        <div class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="d-flex h-100 flex-column justify-content-center">
+
+            <div class="input-group">
+              <input type="text"  id="username" formControlName="username" required 
+                class="form-control" placeholder="Username" aria-label="Username">
+            </div>
+  
+            <div class="input-group">
+              <input type="password" id="passwrod" formControlName="password" required 
+                class="form-control" placeholder="password" aria-label="Password">
+            </div>
+  
+            <div class="form-group commands">
+              <button type="button" (click)="onSubmit()" class="btn btn-primary btn-lg">Log In</button>
+            </div>
+
+          </div>
+        </div>
+
+        <p class="register-link-text">
+          Don't you have an account yet? <a [routerLink]="['/register']">Register now!</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
